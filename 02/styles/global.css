@@ -6,21 +6,42 @@
 
 .a, .b, .c {
     border: 3px solid transparent;
-    min-height: 50px;
-
+    min-height: 50vh;
+    
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .a {
+    grid-area: a;
+    text-align: center;
     border-color: #ffffba
 }
 
 .b {
+    grid-area: b;
     border-color: #ffdfba;
 }
 
 .c {
+    grid-area: c;
     border-color: #baffc9;
+}
+
+body {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-areas: "a"
+                         "b"
+                         "c";
+}
+
+@media (min-width: 600px) {
+    body {
+        grid-template-columns: repeat(2, minmax(1fr, 600px));
+        grid-template-areas: "a a"
+                             "c b";
+    }
 }
