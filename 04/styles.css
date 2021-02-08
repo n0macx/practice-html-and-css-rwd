@@ -1,0 +1,139 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+}
+
+body {
+    background-color: rgb(207, 204, 204);
+}
+
+.hamburger {
+    width: 40px;
+    height: 35px;
+    margin: 10px;
+    background: transparent;
+    border: 0;
+    border-top: 5px solid white;
+    position: relative;
+    align-self: flex-end;
+}
+
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    top: 0;
+    left: 0;
+    position: absolute;
+    border-top: 5px solid white;
+    width: 100%;
+    transform: translateY(10px);
+    transition: 0.3s transform linear;
+}
+
+.hamburger::after {
+    transform: translateY(25px);
+}
+
+.hamburger:focus {
+    border: 0;
+    transform: rotate(45deg) translateY(5px);
+}
+
+.hamburger:focus::after {
+    transform: rotate(-90deg) translateX(-10px);
+}
+
+/* ================================ */
+
+.nav {
+    background-color: #333;
+}
+
+.nav__list {
+    height: 100vh;
+    list-style: none;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.nav__item {
+    flex-direction: column;
+    display: none;
+}
+
+.nav__link {
+    text-decoration: none;
+    color: lightgray;
+    line-height: 320%;
+    height: 60px;
+    padding-left: 10px;
+    padding-top: 5px;
+    text-transform: capitalize;
+}
+
+.nav__link--nested {
+    padding-left: 40px;
+}
+
+.nav__link:hover {
+    border-bottom: 2px solid lightgray;
+}
+
+.hamburger:focus ~ .nav__item,
+.hamburger:focus ~ .nav__item .nav__item {
+    display: flex;
+}
+
+@media (min-width: 600px) {
+
+    .hamburger {
+        display: none;
+    }
+
+
+    .nav__list {
+        height: auto;
+        flex-direction: row;
+    }
+
+    .nav__item {
+        display: flex;
+        flex-grow: 1;
+        text-align:center;
+        position: relative;
+    }
+
+    .nav__link {
+        padding: 0;
+    }
+
+    
+    .nav__list--nested {
+        display: none;
+        padding: 0;
+        margin: 0;
+        position: absolute;
+        top: 60px;
+        width: 100%;
+        
+    }
+    
+    .nav__link:hover {
+        border: 0; 
+        opacity: 0.8;
+    }
+
+    .nav__item:hover .nav__list--nested{
+        display: block;
+    }
+
+    .nav__link--nested {
+        color: black;
+        background-color: rgb(180, 175, 175);
+    }
+
+}
